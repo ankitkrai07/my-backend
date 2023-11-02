@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-const { connection } = require("mongoose");
+const { connection } = require("./db");
+require("dotenv").config();
 
 const app = express();
 
@@ -17,6 +18,6 @@ app.listen(8080, async () => {
     await connection;
     console.log("connected to MongoDB");
   } catch (error) {
-    console.log("Error occured, couldn't connected to DB");
+    console.log(error);
   }
 });
