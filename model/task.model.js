@@ -5,6 +5,7 @@ const TaskSchema = mongoose.Schema({
   description: { type: String, required: true },
   status: { type: String, enum: ["Todo", "Doing", "Done"], default: "Todo" },
   subtask: [{ type: String, ref: "Subtask" }],
+  ParentID: { type: String, required: true },
 });
 
 const TaskModel = mongoose.model("task", TaskSchema);
