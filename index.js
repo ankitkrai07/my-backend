@@ -1,10 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const { connection } = require("./db");
-const { userRouter } = require("./Routes/user.route");
 const { BoardRouter } = require("./Routes/board.route");
 const { taskRouter } = require("./Routes/task.route");
-const { subRouter } = require("./Routes/subtask.route");
+const { subtaskRouter } = require("./Routes/subtask.route");
 
 require("dotenv").config();
 
@@ -17,10 +16,9 @@ app.get("/", async (req, res) => {
   res.send("Welcome to Kanban Board");
 });
 
-app.use("/user", userRouter);
 app.use("/boards", BoardRouter);
 app.use("/tasks", taskRouter);
-app.use("/subtasks", subRouter);
+app.use("/subtasks", subtaskRouter);
 
 app.listen(8080, async () => {
   console.log("Server is running on port 8080");

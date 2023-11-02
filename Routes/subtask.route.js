@@ -1,9 +1,9 @@
 const express = require("express");
 const { SubtaskModel } = require("../model/subtask.model");
 
-const subRouter = express.Router();
+const subtaskRouter = express.Router();
 
-subRouter.post("/", async (req, res) => {
+subtaskRouter.post("/", async (req, res) => {
   const subtask = new SubtaskModel({
     title: req.body.title,
     ParentID: req.body.ParentID,
@@ -12,7 +12,7 @@ subRouter.post("/", async (req, res) => {
   res.send(subtask);
 });
 
-subRouter.get("/:id", async (req, res) => {
+subtaskRouter.get("/:id", async (req, res) => {
   try {
     const subtasks = await SubtaskModel.find({ ParentID: req.params.id });
     res.send(subtasks);
@@ -21,7 +21,7 @@ subRouter.get("/:id", async (req, res) => {
   }
 });
 
-subRouter.patch("/:id", async (req, res) => {
+subtaskRouter.patch("/:id", async (req, res) => {
   try {
     await SubtaskModel.findByIdAndUpdate(req.params.id, req.body);
     res.send({ message: "Updated Subtask" });
@@ -30,7 +30,7 @@ subRouter.patch("/:id", async (req, res) => {
   }
 });
 
-subRouter.delete("/:id", async (req, res) => {
+subtaskRouter.delete("/:id", async (req, res) => {
   try {
     await SubtaskModel.findByIdAndDelete(req.params.id);
     res.send({ message: "Deleted Subtask" });
@@ -39,4 +39,4 @@ subRouter.delete("/:id", async (req, res) => {
   }
 });
 
-module.exports = { subRouter };
+module.exports = { subtaskRouter };
